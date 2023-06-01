@@ -70,6 +70,10 @@
         font-size: 12px;
         text-align: center;
     }
+    .item-rating img{
+        width: 10px;
+        height: 10px;
+    }
 </style>
 <body>
 <div class="conatiner">
@@ -86,8 +90,22 @@
                 <img src="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2892635176.webp" alt=""
                      class="thumbnail">
                 <p class="item-title">周永开</p>
-                <p class="item-rating">7.5</p>
-
+                <p class="item-rating">
+                    {% set rating = 7.5 %}
+                    {% set lights = ((rating|int) / 2)|int %}
+                    {% set halfs = (rating|int) % 2 %}
+                    {% set grays = 5 - lights - halfs %}
+                    {% for light in range(0, lights) %}
+                        <img src="{{ url_for('static',filename='images/rate_light.png') }}" alt="">
+                    {% endfor %}
+                    {% for half in range(0, halfs) %}
+                        <img src="{{ url_for('static',filename='images/rate_half.jpg') }}" alt="">
+                    {% endfor %}
+                    {% for half in range(0, grays) %}
+                        <img src="{{ url_for('static',filename='images/rate_gray.png') }}" alt="">
+                    {% endfor %}
+                    
+                </p>
             </div>
         </div>
     </div>
