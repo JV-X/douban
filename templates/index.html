@@ -70,12 +70,35 @@
         font-size: 12px;
         text-align: center;
     }
-    .item-rating img{
+
+    .item-rating img {
         width: 10px;
         height: 10px;
     }
 </style>
 <body>
+{% macro itemGroup(thumbnail, title, rating) %}
+    <div class="item-group">
+        <img src="{{ thumbnail }}" alt=""
+             class="thumbnail">
+        <p class="item-title">{{ title }}</p>
+        <p class="item-rating">
+            {% set lights = ((rating|int) / 2)|int %}
+            {% set halfs = (rating|int) % 2 %}
+            {% set grays = 5 - lights - halfs %}
+            {% for light in range(0, lights) %}
+                <img src="{{ url_for('static',filename='images/rate_light.png') }}" alt="">
+            {% endfor %}
+            {% for half in range(0, halfs) %}
+                <img src="{{ url_for('static',filename='images/rate_half.jpg') }}" alt="">
+            {% endfor %}
+            {% for half in range(0, grays) %}
+                <img src="{{ url_for('static',filename='images/rate_gray.png') }}" alt="">
+            {% endfor %}
+            {{ rating }}
+        </p>
+    </div>
+{% endmacro %}
 <div class="conatiner">
     <div class="search_group">
         <input type="text" class="search-input" placeholder="搜索...">
@@ -86,27 +109,7 @@
             <a href="#" class="more-btn">更多</a>
         </div>
         <div class="list-group">
-            <div class="item-group">
-                <img src="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2892635176.webp" alt=""
-                     class="thumbnail">
-                <p class="item-title">周永开</p>
-                <p class="item-rating">
-                    {% set rating = 7.5 %}
-                    {% set lights = ((rating|int) / 2)|int %}
-                    {% set halfs = (rating|int) % 2 %}
-                    {% set grays = 5 - lights - halfs %}
-                    {% for light in range(0, lights) %}
-                        <img src="{{ url_for('static',filename='images/rate_light.png') }}" alt="">
-                    {% endfor %}
-                    {% for half in range(0, halfs) %}
-                        <img src="{{ url_for('static',filename='images/rate_half.jpg') }}" alt="">
-                    {% endfor %}
-                    {% for half in range(0, grays) %}
-                        <img src="{{ url_for('static',filename='images/rate_gray.png') }}" alt="">
-                    {% endfor %}
-                    
-                </p>
-            </div>
+            {{ itemGroup('https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2892635176.webp','星球大战', 7.5) }}
         </div>
     </div>
 </div>
