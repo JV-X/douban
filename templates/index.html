@@ -109,7 +109,21 @@
             <a href="#" class="more-btn">更多</a>
         </div>
         <div class="list-group">
-            {{ itemGroup('https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2892635176.webp','星球大战', 7.5) }}
+            {% for movie in movies[0:3] %}
+                {{ itemGroup(movie.thumbnail, movie.title, movie.rating) }}
+            {% endfor %}
+        </div>
+        <div class="item-list-top">
+            <span class="module-title">电视剧</span>
+            <a href="#" class="more-btn">更多</a>
+        </div>
+        <div class="list-group">
+            {% for tv in tvs[0:3] %}
+                {{ itemGroup(tv.thumbnail, tv.title, tv.rating) }}
+            {% endfor %}
+        </div>
+
+
         </div>
     </div>
 </div>
