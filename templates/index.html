@@ -99,31 +99,24 @@
         </p>
     </div>
 {% endmacro %}
+{% macro listGroup(module_title, items) %}
+    <div class="item-list-top">
+            <span class="module-title">{{module_title}}</span>
+            <a href="#" class="more-btn">更多</a>
+        </div>
+        <div class="list-group">
+            {% for item in items[0:3] %}
+                {{ itemGroup(item.thumbnail, item.title, item.rating) }}
+            {% endfor %}
+        </div>
+{% endmacro %}
 <div class="conatiner">
     <div class="search_group">
         <input type="text" class="search-input" placeholder="搜索...">
     </div>
     <div class="item-list-group">
-        <div class="item-list-top">
-            <span class="module-title">电影</span>
-            <a href="#" class="more-btn">更多</a>
-        </div>
-        <div class="list-group">
-            {% for movie in movies[0:3] %}
-                {{ itemGroup(movie.thumbnail, movie.title, movie.rating) }}
-            {% endfor %}
-        </div>
-        <div class="item-list-top">
-            <span class="module-title">电视剧</span>
-            <a href="#" class="more-btn">更多</a>
-        </div>
-        <div class="list-group">
-            {% for tv in tvs[0:3] %}
-                {{ itemGroup(tv.thumbnail, tv.title, tv.rating) }}
-            {% endfor %}
-        </div>
-
-
+        {{listGroup('电影', movies)}}
+        {{listGroup('电视剧', tvs)}}
         </div>
     </div>
 </div>
