@@ -11,17 +11,51 @@
         list-style: none;
         text-decoration: none;
     }
+
     .conatiner {
         width: 375px;
         height: 600px;
         background: pink;
     }
 
+    .search_group {
+        padding: 14px 8px;
+        background: #41b157;
+    }
+
+    .search_group .search-input {
+        background: #fff;
+        display: block;
+        width: 100%;
+        height: 30px;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+    }
+
+    .item-list-group .item-list-top {
+        overflow: hidden;
+        padding: 10px;
+    }
+
+    .item-list-top .module-title {
+        float: left;
+    }
+
+    .item-list-top .more-btn {
+        float: right;
+    }
 </style>
 <body>
 <div class="conatiner">
     <div class="search_group">
-        <input type="text" class="search-input">
+        <input type="text" class="search-input" placeholder="搜索...">
+    </div>
+    <div class="item-list-group">
+        <div class="item-list-top">
+            <span class="module-title">电影</span>
+            <a href="#" class="more-btn">更多</a>
+        </div>
     </div>
 </div>
 </body>
